@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce a Ecofor Market - Empresa líder en productos de higiene y limpieza profesional en Talcahuano">
+    <title>Nosotros - Ecofor Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .hero-nosotros {
+            background: linear-gradient(rgba(11, 60, 47, 0.9), rgba(7, 41, 32, 0.9)), 
+                        url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920') center/cover;
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .hero-nosotros h2 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .hero-nosotros h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .mision-section {
+            background: linear-gradient(rgba(240, 240, 240, 0.95), rgba(240, 240, 240, 0.95)),
+                        url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1920') center/cover;
+            padding: 5rem 0;
+        }
+        
+        .mision-section h2 {
+            color: #0B3C2F;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+        }
+        
+        .mision-section p {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            max-width: 900px;
+        }
+        
+        .vision-section {
+            background: linear-gradient(rgba(240, 240, 240, 0.95), rgba(240, 240, 240, 0.95)),
+                        url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1920') center/cover;
+            padding: 5rem 0;
+        }
+        
+        .vision-section h2 {
+            color: #0B3C2F;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+        }
+        
+        .vision-section p {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            max-width: 900px;
+        }
+        
+        .footer-nosotros {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-nosotros a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-nosotros a:hover {
+            color: #25D366;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: #25D366;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER ====== -->
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="img/LOGO MARKET.png" alt="Ecofor Market Logo" style="max-height: 60px; width: auto;">
+                        </a>
+                    </div>
+
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="¿Qué buscas?">
+                        <button onclick="buscarProductos()">Buscar</button>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <a href="#" id="userLoginBtn" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-primary" style="display: flex; align-items: center; gap: 5px;">
+                            👤 <span id="userNameDisplay">Iniciar Sesión</span>
+                        </a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn btn-primary" style="display: flex; align-items: center; gap: 5px;" title="Mi Carrito">
+                            🛒 <span id="carrito-count" style="background: white; color: var(--color-primary); border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">0</span>
+                        </a>
+                    </div>
+
+                    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                </div>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="https://3d4e9f7e-bb72-4b68-8637-76fdc38e394d.filesusr.com/ugd/a56f3c_4c618c1961534d19948f41d4232377ba.pdf" target="_blank">CATÁLOGO</a></li>
+                <li><a href="productos.html">PRODUCTOS</a></li>
+                <li><a href="nosotros.html" class="active">NOSOTROS</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Nuestra Misión & Visión -->
+    <section class="hero-nosotros">
+        <div class="container">
+            <h2>Nuestra</h2>
+            <h1>Misión & Visión</h1>
+        </div>
+    </section>
+
+    <!-- MISIÓN -->
+    <section class="mision-section">
+        <div class="container">
+            <h2>MISIÓN</h2>
+            <p>En ECOFOR MARKET. Nuestra misión es ofrecer servicios y productos con altos estándares de calidad para el rubro de Higiene Ambiental, Ventas y distribución de equipos, productos y artículos de limpieza industrial e institucional, con la finalidad de alcanzar y exceder las expectativas de nuestros clientes siendo una alternativa viable, rápida y oportuna.</p>
+            <br>
+            <p>En ECOFOR MARKET la ventaja competitiva es ser una empresa acreditada con amplia experiencia en el rubro y con altos estándares de seguridad en las operaciones. Contamos con un despliegue técnico especializado, el que es continuamente capacitado, fomentando la creatividad y responsabilidad, proporcionando soluciones de calidad a nuestros clientes del rubro industrial e institucional dentro del territorio nacional.</p>
+        </div>
+    </section>
+
+    <!-- VISIÓN -->
+    <section class="vision-section">
+        <div class="container">
+            <h2>VISIÓN</h2>
+            <p>Anhelamos ser la empresa referente en el rubro de higiene ambiental, innovándonos de forma permanente, incorporando nuevas tecnologías amigables con el medio ambiente. Además, buscamos profesionalizar las Ventas y distribución de equipos, productos y artículos de limpieza industrial e institucional a lo largo del territorio nacional, para lo cual comprometemos nuestros esfuerzos mejorando de forma permanente y en estricto apego y respeto a la legislación vigente aplicable.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-nosotros">
+        <div class="container text-center">
+            <p><strong>Correo:</strong> <a href="mailto:ventas@ecoformarket.cl">ventas@ecoformarket.cl</a></p>
+            <p><strong>Teléfono:</strong> <a href="tel:+56412858091">+56 41-2858 091</a> / <a href="tel:+56412858094">+56 41-2858 094</a></p>
+            <p><strong>Sucursal:</strong> Avenida Colón #3815, Salinas, Talcahuano Bío Bío, Chile</p>
+            
+            <div class="social-icons">
+                <a href="https://www.facebook.com/ecoformarket" target="_blank" title="Facebook">📘</a>
+                <a href="https://www.instagram.com/ecoformarket" target="_blank" title="Instagram">📷</a>
+                <a href="https://wa.me/56966742521" target="_blank" title="WhatsApp">💬</a>
+            </div>
+            
+            <hr style="border-color: rgba(255,255,255,0.2); margin: 2rem 0;">
+            <p style="opacity: 0.7; font-size: 0.9rem;">© Ecoforgroup 2024 / Todos los Derechos son Reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/56966742521?text=Hola%2C%20quiero%20más%20información" 
+       target="_blank" 
+       style="position: fixed; bottom: 25px; right: 25px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 9999; text-decoration: none; transition: all 0.3s;"
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.909.129 1.252.08.382-.058 1.17-.48 1.337-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        </svg>
+    </a>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--color-primary); color: white;">
+                    <h5 class="modal-title">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <hr>
+                        <p class="text-center">¿No tienes cuenta? <a href="index.html" onclick="sessionStorage.setItem('abrirRegistro', 'true')"><strong>Regístrate aquí</strong></a></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="iniciarSesion()">Iniciar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrito Modal -->
+    <div class="modal fade" id="carritoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--color-primary); color: white;">
+                    <h5 class="modal-title">Mi Carrito</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carritoContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
+                    <button type="button" class="btn btn-primary" onclick="procederAlPago()">Proceder al Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

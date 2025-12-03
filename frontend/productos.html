@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Productos - Catálogo Completo Ecofor Market">
+    <title>📦 Productos | Ecofor Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Banner de productos */
+        .productos-banner {
+            background: linear-gradient(135deg, #0B3C2F 0%, #004b9e 100%);
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .productos-banner h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .productos-banner p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Grid de productos */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+        
+        .producto-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .producto-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        
+        .producto-image {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .producto-image img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        .producto-info {
+            padding: 1.5rem;
+        }
+        
+        .producto-marca {
+            font-size: 0.8rem;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            background: #e3f2fd;
+            padding: 3px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .producto-nombre {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            min-height: 2.8rem;
+        }
+        
+        .producto-precio {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .btn-agregar {
+            width: 100%;
+            background: linear-gradient(135deg, var(--color-primary) 0%, #0066cc 100%);
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn-agregar:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(11,60,47,0.3);
+        }
+        
+        /* Categorías de productos */
+        .productos-categorias {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .cat-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--color-primary);
+            background: white;
+            color: var(--color-primary);
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .cat-btn:hover, .cat-btn.active {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+        
+        .search-container input:focus {
+            border-color: var(--color-primary);
+            outline: none;
+        }
+        
+        @media (max-width: 768px) {
+            .productos-banner h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER ====== -->
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="img/LOGO MARKET.png" alt="Ecofor Market Logo" style="max-height: 60px; width: auto;">
+                        </a>
+                    </div>
+
+                    <div class="search-bar" style="visibility: hidden;">
+                        <input type="text" placeholder="Buscar productos...">
+                        <button>Buscar</button>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <a href="#" id="userLoginBtn" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-primary" style="display: flex; align-items: center; gap: 5px;">
+                            👤 <span id="userNameDisplay">Iniciar Sesión</span>
+                        </a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn btn-primary" style="display: flex; align-items: center; gap: 5px;" title="Mi Carrito">
+                            🛒 <span id="carrito-count" style="background: white; color: var(--color-primary); border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">0</span>
+                        </a>
+                    </div>
+
+                    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                </div>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="https://3d4e9f7e-bb72-4b68-8637-76fdc38e394d.filesusr.com/ugd/a56f3c_4c618c1961534d19948f41d4232377ba.pdf" target="_blank">CATÁLOGO</a></li>
+                <li><a href="productos.html" class="active">PRODUCTOS</a></li>
+                <li><a href="nosotros.html">NOSOTROS</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner de Productos -->
+    <section class="productos-banner">
+        <div class="container">
+            <h1>📦 CATÁLOGO DE PRODUCTOS</h1>
+            <p>Todos nuestros productos disponibles - Marcas Premium</p>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <!-- Filtros por categoría -->
+            <div class="productos-categorias">
+                <button class="cat-btn active" onclick="filtrarProductos('todos')">🏷️ Todos</button>
+                <button class="cat-btn" onclick="filtrarProductos('papeleria')">🧻 Papelería</button>
+                <button class="cat-btn" onclick="filtrarProductos('aseo')">🧹 Artículos de Aseo</button>
+                <button class="cat-btn" onclick="filtrarProductos('quimicos')">🧪 Productos Químicos</button>
+                <button class="cat-btn" onclick="filtrarProductos('epp')">🧤 EPP HORECA</button>
+            </div>
+
+            <!-- Filtros adicionales -->
+            <div style="display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <label style="font-weight: 600; color: #333;">🏷️ Marca:</label>
+                    <select id="filtroMarca" onchange="aplicarFiltros()" style="padding: 0.5rem 1rem; border: 2px solid var(--color-primary); border-radius: 8px; font-size: 0.95rem;">
+                        <option value="todas">Todas las marcas</option>
+                        <option value="Tork">Tork</option>
+                        <option value="Elite">Elite</option>
+                        <option value="Bianca">Bianca</option>
+                        <option value="Rendipel">Rendipel</option>
+                        <option value="Virginia">Virginia</option>
+                        <option value="Maguey">Maguey</option>
+                        <option value="Virutex">Virutex</option>
+                        <option value="Sucitesa">Sucitesa</option>
+                        <option value="Impeke">Impeke</option>
+                        <option value="Maxwipe">Maxwipe</option>
+                        <option value="Black Bull">Black Bull</option>
+                    </select>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <label style="font-weight: 600; color: #333;">💰 Precio máx:</label>
+                    <select id="filtroPrecio" onchange="aplicarFiltros()" style="padding: 0.5rem 1rem; border: 2px solid var(--color-primary); border-radius: 8px; font-size: 0.95rem;">
+                        <option value="999999">Todos los precios</option>
+                        <option value="10000">Hasta $10.000</option>
+                        <option value="20000">Hasta $20.000</option>
+                        <option value="30000">Hasta $30.000</option>
+                        <option value="50000">Hasta $50.000</option>
+                    </select>
+                </div>
+                
+                <button onclick="limpiarFiltros()" style="padding: 0.5rem 1.5rem; background: #f5f5f5; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='#e0e0e0'" onmouseout="this.style.background='#f5f5f5'">
+                    🗑️ Limpiar Filtros
+                </button>
+            </div>
+
+            <!-- Total de productos -->
+            <div style="text-align: center; margin: 1rem 0; font-size: 1.1rem; color: #666;">
+                <span id="totalProductos">0</span> productos encontrados
+            </div>
+
+            <!-- Grid de productos -->
+            <div class="productos-grid" id="productosGrid">
+                <!-- Se carga dinámicamente -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: linear-gradient(135deg, #003366 0%, #0B3C2F 100%); color: white; padding: 3rem 0; margin-top: 3rem;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p style="margin: 0; opacity: 0.8;">&copy; 2025 Ecofor Market - Todos los derechos reservados.</p>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <a href="https://www.facebook.com/ecoformarket" target="_blank" style="color: white;">Facebook</a>
+                    <a href="https://www.instagram.com/ecoformarket" target="_blank" style="color: white;">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/56966742521?text=Hola%2C%20me%20interesa%20obtener%20información%20sobre%20sus%20productos" 
+       target="_blank" 
+       style="position: fixed; bottom: 25px; right: 25px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 9999; text-decoration: none; font-size: 2rem;">
+        💬
+    </a>
+
+    <!-- Carrito Modal -->
+    <div class="modal fade" id="carritoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--color-primary); color: white;">
+                    <h5 class="modal-title">Mi Carrito</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carritoContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
+                    <button type="button" class="btn btn-primary" onclick="procederAlPago()">Proceder al Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--color-primary); color: white;">
+                    <h5 class="modal-title">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="iniciarSesion()">Iniciar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // TODOS LOS PRODUCTOS DEL CATÁLOGO ECOFOR MARKET PDF
+        const todosLosProductos = [
+            // ===== PAPELERÍA Y DISPENSADORES =====
+            { id: 1, nombre: 'HIGIENICO TORK UNIVERSAL JUMBO H/S 4X500 MTS', categoria: 'papeleria', precio: 45990, marca: 'Tork', img: 'img/HIGIENICO TORK UNIVERSAL JUMBO HS 4X500 MTS.png' },
+            { id: 2, nombre: 'HIGIENICO RENDIPEL MAX UH 4X500 MTS', categoria: 'papeleria', precio: 42990, marca: 'Rendipel', img: 'img/HIGIENICO RENDIPEL MAX UH 4X500 MTS.png' },
+            { id: 3, nombre: 'HIGIENICO TORK UNIVERSAL 6X500 MTS', categoria: 'papeleria', precio: 62990, marca: 'Tork', img: 'img/HIGIENICO TORK UNIVERSAL 6X500 MTS.png' },
+            { id: 4, nombre: 'HIGIENICO BLANCA JUMBO 4X500 MTS', categoria: 'papeleria', precio: 38990, marca: 'Bianca', img: 'img/HIGIENICO BLANCA JUMBO 4X500 MTS.png' },
+            { id: 5, nombre: 'HIGIENICO ELITE D.H 6X250 MTS', categoria: 'papeleria', precio: 35990, marca: 'Elite', img: 'img/HIGIENICO ELITE D.H 6X250 MTS.png' },
+            { id: 6, nombre: 'HIGIENICO TORK SMARTONE MINI 12 ROLLOS X 111.6 MTS', categoria: 'papeleria', precio: 48990, marca: 'Tork', img: 'img/HIGIENICO TORK SMARTONE MINI 12 ROLLOS X 111.6 MTS.png' },
+            
+            { id: 7, nombre: 'TOALLA BIANCA JUMBO 2X250 MTS', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: 'img/TOALLA BIANCA JUMBO 2X250 MTS.png' },
+            { id: 8, nombre: 'TOALLA ELITE ECONOMICA 2X250 MTS', categoria: 'papeleria', precio: 22990, marca: 'Elite', img: 'img/TOALLA ELITE ECONOMICA 2X250 MTS.png' },
+            { id: 9, nombre: 'TOALLA TORK UNIVERSAL 2X250 MTS JUMBO', categoria: 'papeleria', precio: 29990, marca: 'Tork', img: 'img/TOALLA TORK UNIVERSAL 2X250 MTS JUMBO.png' },
+            { id: 10, nombre: 'TOALLA ELITE AUTOCORTE 2X250 MTS', categoria: 'papeleria', precio: 28990, marca: 'Elite', img: 'img/TOALLA ELITE AUTOCORTE 2X250 MTS.jpg' },
+            { id: 11, nombre: 'TOALLA TORK ADVANCED D/H 2X200MT JUMBO', categoria: 'papeleria', precio: 34990, marca: 'Tork', img: 'img/TOALLA TORK ADVANCED DH 2X200MT JUMBO.png' },
+            { id: 12, nombre: 'TOALLA INTERFOLIADA DH 18X200 ELITE', categoria: 'papeleria', precio: 38990, marca: 'Elite', img: 'img/TOALLA INTERFOLIADA DH 18X200 ELITE.png' },
+            
+            { id: 13, nombre: 'SERVILLETA BIANCA COCKTAIL 20X100 HJ', categoria: 'papeleria', precio: 12990, marca: 'Bianca', img: 'img/SERVILLETA BIANCA COCKTAIL 20X100 HJ.png' },
+            { id: 14, nombre: 'SERVILLETA ELITE EXPRESS DH COCTEL 18 PQT X 400UN', categoria: 'papeleria', precio: 18990, marca: 'Elite', img: 'img/SERVILLETA ELITE EXPRESS DH COCTEL 18 PQT X 400UN.png' },
+            { id: 15, nombre: 'SERVILLETA BIANCA LUNCH 20X500', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: 'img/SERVILLETA BIANCA LUNCH 20X500.png' },
+            { id: 16, nombre: 'TORK ADVANCED SERVILLETA MESA 30X30 ACOLCHADA 12X200', categoria: 'papeleria', precio: 26990, marca: 'Tork', img: 'img/TORK ADVANCED SERVILLETA MESA 30X30 ACOLCHADA 12X200.png' },
+            
+            { id: 17, nombre: 'PAÑUELO FACIAL ELITE PREMIUM 60/36', categoria: 'papeleria', precio: 38990, marca: 'Elite', img: 'img/PAÑUELO FACIAL ELITE PREMIUM 6036.png' },
+            
+            { id: 18, nombre: 'PAÑO MAXWIPE MAX70 TRABAJO PESADO ROLLO 88 PAÑOS X 6 UN', categoria: 'papeleria', precio: 28990, marca: 'Maxwipe', img: 'img/PAÑO MAXWIPE MAX70 TRABAJO PESADO ROLLO 88 PAÑOS X 6 UN.png' },
+            
+            { id: 19, nombre: 'SABANILLA TORK PREPICADA ADVANCED 4PAQ X 2ROLLO 48MTS', categoria: 'papeleria', precio: 42990, marca: 'Tork', img: 'img/SABANILLA TORK PREPICADA ADVANCED 4PAQ X 2ROLLO 48MTS.png' },
+            
+            // Más productos con imágenes reales
+            { id: 20, nombre: 'HIGIENICO BIANCA JUMBO 6X500 MTS', categoria: 'papeleria', precio: 56990, marca: 'Bianca', img: 'img/HIGIENICO BIANCA JUMBO 6X500 MTS.png' },
+            { id: 21, nombre: 'HIGIENICO RENDIPEL PRO UH 6X300 MTS', categoria: 'papeleria', precio: 47990, marca: 'Rendipel', img: 'img/HIGIENICO RENDIPEL PRO UH 6X300 MTS.png' },
+            { id: 22, nombre: 'HIGIENICO TORK ROLLO D/H 8X6 25 MTS', categoria: 'papeleria', precio: 28990, marca: 'Tork', img: 'img/HIGIENICO TORK ROLLO DH 8X6 25 MTS.png' },
+            { id: 23, nombre: 'TOALLA RENDIPEL MAX UH 2X250 MTS', categoria: 'papeleria', precio: 26990, marca: 'Rendipel', img: 'img/TOALLA RENDIPEL MAX UH 2X250 MTS.png' },
+            { id: 24, nombre: 'TOALLA INTERFOLIADA NATURAL 18X250', categoria: 'papeleria', precio: 36990, marca: 'Elite', img: null },
+            { id: 25, nombre: 'SERVILLETA MESA FLORES 33X33 9X500 ELITE', categoria: 'papeleria', precio: 22990, marca: 'Elite', img: 'img/SERVILLETA MESA FLORES 33X33 9X500 ELITE.png' },
+            { id: 26, nombre: 'PAÑUELO FACIAL INSTITUCIONAL 42 CJ X 50 UN ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: 'img/PAÑUELO FACIAL INSTITUCIONAL 42 CJ X 50 UN ELITE.png' },
+            { id: 27, nombre: 'FACIAL TORK DH EXTRA SUAVE 75 UNIDADES', categoria: 'papeleria', precio: 8990, marca: 'Tork', img: null },
+            { id: 28, nombre: 'PAÑO MAXWIPE MAX50 TRABAJO LIVIANO BOBINA 690 PAÑOS', categoria: 'papeleria', precio: 18990, marca: 'Maxwipe', img: 'img/PAÑO MAXWIPE MAX50 TRABAJO LIVIANO BOBINA 690 PAÑOS.png' },
+            { id: 29, nombre: 'PAÑO MAXWIPE MAX60 TRABAJO BOBINA 890 PAÑOS', categoria: 'papeleria', precio: 22990, marca: 'Maxwipe', img: 'img/PAÑO MAXWIPE MAX60 TRABAJO BOBINA 890 PAÑOS.png' },
+            { id: 30, nombre: 'SABANILLA BIANCA 2PQ X 50MTS', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: 'img/SABANILLA BIANCA 2PQ X 50MTS.png' },
+            
+            // DISPENSADORES
+            { id: 31, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO INOXIDABLE ELITE', categoria: 'papeleria', precio: 35990, marca: 'Elite', img: null },
+            { id: 32, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO METALICO BLANCO ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: null },
+            { id: 33, nombre: 'DISP. EVOLUTION HIGIENICO DOBLE ROLLO BLANCO', categoria: 'papeleria', precio: 28990, marca: 'Evolution', img: null },
+            { id: 34, nombre: 'DISP. EVOLUTION HIGIENICO INTERFOLIADO BLANCO', categoria: 'papeleria', precio: 29990, marca: 'Evolution', img: null },
+            { id: 35, nombre: 'DISP. TORK XPRESS MINI ACERO INOXIDABLE', categoria: 'papeleria', precio: 45990, marca: 'Tork', img: null },
+            
+            // ===== ARTÍCULOS DE ASEO =====
+            { id: 36, nombre: 'ESCOBILLON ACRILICO 32 CM VIRGINIA', categoria: 'aseo', precio: 8990, marca: 'Virginia', img: null },
+            { id: 37, nombre: 'ESCOBILLON FIBRA PISOS 50 CM VIRGINIA', categoria: 'aseo', precio: 12990, marca: 'Virginia', img: null },
+            { id: 38, nombre: 'ESCOBILLON MOPPY 42 CM MAGUEY', categoria: 'aseo', precio: 9990, marca: 'Maguey', img: null },
+            { id: 39, nombre: 'MOP ALGODÓN INDUSTRIAL 500 GR', categoria: 'aseo', precio: 7990, marca: 'Virginia', img: null },
+            { id: 40, nombre: 'MOPA MOP MICROFIBRA 40 CM VIRGINIA', categoria: 'aseo', precio: 11990, marca: 'Virginia', img: null },
+            { id: 41, nombre: 'PAÑO LIMPIEZA MICROFIBRA 40X40 VIRGINIA', categoria: 'aseo', precio: 4990, marca: 'Virginia', img: null },
+            { id: 42, nombre: 'PAÑO LIMPIEZA MULTIUSO BRILLANTE AMARILLO', categoria: 'aseo', precio: 3990, marca: 'Ecofor', img: null },
+            { id: 43, nombre: 'SECADOR PISO VIDRIO METALICO 40CM VIRGINIA', categoria: 'aseo', precio: 8990, marca: 'Virginia', img: null },
+            { id: 44, nombre: 'BASURERO PEDAL PLÁSTICO 12 LTS', categoria: 'aseo', precio: 14990, marca: 'Ecofor', img: null },
+            { id: 45, nombre: 'BASURERO VAIVEN 50 LTS', categoria: 'aseo', precio: 22990, marca: 'Ecofor', img: null },
+            { id: 46, nombre: 'ESCOBILLA WC BASURERO PEDAL DISPENSADOR 3EN1', categoria: 'aseo', precio: 24990, marca: 'Ecofor', img: null },
+            { id: 47, nombre: 'GUANTE IPAR VIRUTEX TALLA S/M/L', categoria: 'aseo', precio: 3990, marca: 'Virutex', img: null },
+            { id: 48, nombre: 'BOLSA BASURA 50X60 X25 NEGRO', categoria: 'aseo', precio: 4990, marca: 'Ecofor', img: null },
+            { id: 49, nombre: 'BOLSA BASURA 60X90 X 10 NEGRO', categoria: 'aseo', precio: 5990, marca: 'Ecofor', img: null },
+            { id: 50, nombre: 'BOLSA BASURA 80X110 X 10 NEGRO', categoria: 'aseo', precio: 7990, marca: 'Ecofor', img: null },
+            
+            // ===== PRODUCTOS QUÍMICOS =====
+            { id: 51, nombre: 'ABRILLANTADOR PISOS 5LTS VIRGINIA', categoria: 'quimicos', precio: 18990, marca: 'Virginia', img: null },
+            { id: 52, nombre: 'CERA ACRILICA AUTOBRILLO 5LTS MAGUEY', categoria: 'quimicos', precio: 24990, marca: 'Maguey', img: null },
+            { id: 53, nombre: 'CERA ACRILICA PREMIUM 5LTS MAGUEY', categoria: 'quimicos', precio: 28990, marca: 'Maguey', img: null },
+            { id: 54, nombre: 'CERA CREMA BRILLINA AMARILLA 480ML VIRGINIA', categoria: 'quimicos', precio: 5990, marca: 'Virginia', img: null },
+            { id: 55, nombre: 'CERA LIQUIDA INCOLORA AUTOBRILLO LAVANDA 900ML VIRGINIA', categoria: 'quimicos', precio: 6990, marca: 'Virginia', img: null },
+            { id: 56, nombre: 'CERA PLASTICA NEGRA 5 LTS VIRGINIA', categoria: 'quimicos', precio: 22990, marca: 'Virginia', img: null },
+            { id: 57, nombre: 'MANTENEDOR AQUAGEN DE PISO 5LTS - LEMON/MANZANA', categoria: 'quimicos', precio: 16990, marca: 'Maguey', img: null },
+            { id: 58, nombre: 'REMOVEDOR DE CERAS PISOS FLOTANTE 5L VIRGINIA', categoria: 'quimicos', precio: 19990, marca: 'Virginia', img: null },
+            { id: 59, nombre: 'LIMPIADOR CLOROGEL EUCALIPTUS IGENIX 5LTS VIRGINIA', categoria: 'quimicos', precio: 14990, marca: 'Virginia', img: null },
+            { id: 60, nombre: 'LIMPIADOR DESINFECTANTE IGENIX 5 LTS VIRGINIA - LAVANDA', categoria: 'quimicos', precio: 15990, marca: 'Virginia', img: null },
+            { id: 61, nombre: 'CLORO CONCENTRADO TRADICIONAL 4LTS - IMPEKE', categoria: 'quimicos', precio: 12990, marca: 'Impeke', img: null },
+            { id: 62, nombre: 'CLOROGEL IGENIX 900ML VIRGINIA - LAVANDA/EUCALIPTUS', categoria: 'quimicos', precio: 4990, marca: 'Virginia', img: null },
+            { id: 63, nombre: 'CLOROGEL AROMA LIMON 5 LTS IMPEKE', categoria: 'quimicos', precio: 13990, marca: 'Impeke', img: null },
+            { id: 64, nombre: 'DESODORANTE LÍQUIDO AROM LAVANDA 5LTS', categoria: 'quimicos', precio: 14990, marca: 'Maguey', img: null },
+            { id: 65, nombre: 'AEROSOL CON GATILLO AROM AIRES PATAGONIA 250ML', categoria: 'quimicos', precio: 3990, marca: 'Ecofor', img: null },
+            { id: 66, nombre: 'DESODORANTE AEROSOL 225G - VARIOS AROMAS', categoria: 'quimicos', precio: 3490, marca: 'Ecofor', img: null },
+            { id: 67, nombre: 'DESODORANTE AMBIENTAL CITRICO 5LTS MAGUEY', categoria: 'quimicos', precio: 13990, marca: 'Maguey', img: null },
+            { id: 68, nombre: 'DESODORANTE E HIGIENIZANTE AMBIENTAL CITRICO 5LTS MAGUEY', categoria: 'quimicos', precio: 15990, marca: 'Maguey', img: null },
+            { id: 69, nombre: 'AMBIGEN BRYS NEUTRALIZADOR MALOS OLORES 750ML SUCITESA', categoria: 'quimicos', precio: 8990, marca: 'Sucitesa', img: null },
+            { id: 70, nombre: 'WAX SHAMPOO CAR 5LTS MAGUEY', categoria: 'quimicos', precio: 16990, marca: 'Maguey', img: null },
+            { id: 71, nombre: 'SHAMPOO DE CARROCERIAS ALTA ESPUMA 5 LTS', categoria: 'quimicos', precio: 15990, marca: 'Maguey', img: null },
+            { id: 72, nombre: 'SHAMPO DE ALFOMBRAS Y TAPICES 5LTS MAGUEY', categoria: 'quimicos', precio: 17990, marca: 'Maguey', img: null },
+            { id: 73, nombre: 'RENOVADOR DE GOMAS 5 LTS MAGUEY', categoria: 'quimicos', precio: 14990, marca: 'Maguey', img: null },
+            { id: 74, nombre: 'DETERGENTE EMULGEN EXCELLENCE 20KG SUCITESA', categoria: 'quimicos', precio: 42990, marca: 'Sucitesa', img: null },
+            { id: 75, nombre: 'DETERGENTE EN POLVO 2.5KG VIRGINIA', categoria: 'quimicos', precio: 8990, marca: 'Virginia', img: null },
+            { id: 76, nombre: 'DETERGENTE IGENIX FLORAL 3 LTS VIRGINIA', categoria: 'quimicos', precio: 9990, marca: 'Virginia', img: null },
+            { id: 77, nombre: 'DETERGENTE DE ROPA LIQUIDO 5LTS MAGUEY', categoria: 'quimicos', precio: 12990, marca: 'Maguey', img: null },
+            { id: 78, nombre: 'CLORO ROPA BLANCA 1000 GR X15 - IMPEKE', categoria: 'quimicos', precio: 18990, marca: 'Impeke', img: null },
+            { id: 79, nombre: 'CLORO ROPA COLOR 930GR X15 - IMPEKE', categoria: 'quimicos', precio: 18990, marca: 'Impeke', img: null },
+            
+            // ===== EPP HORECA =====
+            { id: 80, nombre: 'GUANTE NITRILO 13 VERDE', categoria: 'epp', precio: 12990, marca: 'Ecofor', img: null },
+            { id: 81, nombre: 'GUANTE CLASICA IPAR VIRUTEX TALLA S/M/L', categoria: 'epp', precio: 3990, marca: 'Virutex', img: null },
+            { id: 82, nombre: 'GUANTE DOMESTICO FLOCADO LATEX', categoria: 'epp', precio: 4990, marca: 'Ecofor', img: null },
+            { id: 83, nombre: 'GUANTE CABRITILLA BLACK BULL BASIC', categoria: 'epp', precio: 8990, marca: 'Black Bull', img: null },
+            { id: 84, nombre: 'GUANTE EXAM. NITRILO NEGRO/AZUL', categoria: 'epp', precio: 14990, marca: 'Ecofor', img: null },
+            { id: 85, nombre: 'GUANTE LATEX BLANCO', categoria: 'epp', precio: 11990, marca: 'Ecofor', img: null },
+            { id: 86, nombre: 'GUANTE EXAMEN VINILO BLANCO/AZUL', categoria: 'epp', precio: 9990, marca: 'Ecofor', img: null },
+            { id: 87, nombre: 'COTONA DESECHABLE ROLLO 200UN', categoria: 'epp', precio: 24990, marca: 'Ecofor', img: null },
+            { id: 88, nombre: 'PECHERA POLIET PVC', categoria: 'epp', precio: 6990, marca: 'Ecofor', img: null },
+            { id: 89, nombre: 'CUBRE ZAPATOS POLIETILENO AZUL 100UN', categoria: 'epp', precio: 8990, marca: 'Ecofor', img: null },
+            { id: 90, nombre: 'CUBRE ZAPATOS POLIETILENO NEGRO 100UN', categoria: 'epp', precio: 8990, marca: 'Ecofor', img: null },
+            { id: 91, nombre: 'MASCARILLA 3 PC/ELAST AZUL 50 UN', categoria: 'epp', precio: 12990, marca: 'Ecofor', img: null },
+            { id: 92, nombre: 'REDECILLA DE NYLON PARA PELO 100 UN COLOR NEGRO', categoria: 'epp', precio: 7990, marca: 'Ecofor', img: null }
+        ];
+        
+        let productosFiltrados = [...todosLosProductos];
+        let categoriaActual = 'todos';
+        
+        function renderizarProductos() {
+            const grid = document.getElementById('productosGrid');
+            const total = document.getElementById('totalProductos');
+            
+            total.textContent = productosFiltrados.length;
+            
+            if (productosFiltrados.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <h3 style="color: #666;">No se encontraron productos</h3>
+                        <p style="color: #999;">Intenta con otra categoría o búsqueda</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = productosFiltrados.map(p => {
+                const imagenSrc = p.img || `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="280" height="200"><rect fill="%230066cc" width="280" height="200"/><text x="140" y="100" fill="white" font-size="20" text-anchor="middle" font-family="Arial">${encodeURIComponent(p.marca)}</text></svg>`;
+                
+                return `
+                    <div class="producto-card">
+                        <div class="producto-image">
+                            <img src="${imagenSrc}" alt="${p.nombre}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22200%22><rect fill=%22%230066cc%22 width=%22280%22 height=%22200%22/><text x=%22140%22 y=%22100%22 fill=%22white%22 font-size=%2220%22 text-anchor=%22middle%22>${p.marca}</text></svg>'">
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-marca">${p.marca}</span>
+                            <div class="producto-nombre">${p.nombre}</div>
+                            <div class="producto-precio">$${p.precio.toLocaleString('es-CL')}</div>
+                            <button class="btn-agregar" onclick="agregarProducto(${p.id}, '${p.nombre.replace(/'/g, "\\'")}', ${p.precio})">
+                                🛒 Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function filtrarProductos(categoria) {
+            // Actualizar botones activos
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            categoriaActual = categoria;
+            aplicarFiltros();
+        }
+        
+        function aplicarFiltros() {
+            let resultados = [...todosLosProductos];
+            
+            // Filtro por categoría
+            if (categoriaActual !== 'todos') {
+                resultados = resultados.filter(p => p.categoria === categoriaActual);
+            }
+            
+            // Filtro por marca
+            const marcaSeleccionada = document.getElementById('filtroMarca')?.value;
+            if (marcaSeleccionada && marcaSeleccionada !== 'todas') {
+                resultados = resultados.filter(p => p.marca === marcaSeleccionada);
+            }
+            
+            // Filtro por precio
+            const precioMax = parseInt(document.getElementById('filtroPrecio')?.value || 999999);
+            if (precioMax < 999999) {
+                resultados = resultados.filter(p => p.precio <= precioMax);
+            }
+            
+            productosFiltrados = resultados;
+            renderizarProductos();
+        }
+        
+        function limpiarFiltros() {
+            // Resetear categoría
+            categoriaActual = 'todos';
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.cat-btn').classList.add('active');
+            
+            // Resetear selects
+            document.getElementById('filtroMarca').value = 'todas';
+            document.getElementById('filtroPrecio').value = '999999';
+            
+            // Mostrar todos los productos
+            productosFiltrados = [...todosLosProductos];
+            renderizarProductos();
+        }
+        
+        function agregarProducto(id, nombre, precio) {
+            if (typeof agregarAlCarrito === 'function') {
+                agregarAlCarrito(id, nombre, precio);
+            } else {
+                alert(`${nombre} agregado al carrito - $${precio.toLocaleString('es-CL')}`);
+            }
+        }
+        
+        
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarProductos();
+        });
+    </script>
+</body>
+</html>
+
