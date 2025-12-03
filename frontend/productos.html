@@ -293,11 +293,118 @@
     </footer>
 
     <!-- WhatsApp Flotante -->
-    <a href="https://wa.me/56966742521?text=Hola%2C%20me%20interesa%20obtener%20información%20sobre%20sus%20productos" 
+    <a href="https://wa.me/56966742521?text=Hola%2C%20me%20interesa%20consultar%20sobre%20los%20productos%20de%20Ecofor%20Market" 
        target="_blank" 
-       style="position: fixed; bottom: 25px; right: 25px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 9999; text-decoration: none; font-size: 2rem;">
-        💬
+       class="whatsapp-float"
+       title="¡Contáctanos por WhatsApp!">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.828.744 5.584 2.16 8.024L.064 31.936l8.12-2.072A15.93 15.93 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.548 0-5.036-.72-7.18-2.076l-.516-.308-5.336 1.36 1.42-5.18-.336-.532A13.27 13.27 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z" fill="white"/>
+            <path d="M23.573 19.36c-.396-.2-2.344-1.156-2.708-1.288-.364-.132-.628-.2-.892.2-.264.396-1.024 1.288-1.256 1.552-.232.264-.464.296-.86.096-.396-.2-1.672-.616-3.184-1.964-1.176-1.048-1.972-2.344-2.204-2.74-.232-.396-.024-.612.172-.808.18-.176.396-.464.596-.696.2-.232.264-.396.396-.66.132-.264.068-.496-.032-.696-.1-.2-.892-2.148-1.224-2.94-.324-.772-.652-.668-.892-.68-.232-.012-.496-.016-.76-.016s-.696.1-1.06.496c-.364.396-1.392 1.36-1.392 3.316s1.424 3.848 1.624 4.112c.2.264 2.808 4.288 6.8 6.012.952.412 1.696.656 2.276.84.956.304 1.828.26 2.516.156.768-.116 2.344-.96 2.676-1.884.332-.924.332-1.716.232-1.884-.1-.168-.364-.268-.76-.468z" fill="white"/>
+        </svg>
+        <span class="whatsapp-text">¿Necesitas ayuda?</span>
     </a>
+    
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+            z-index: 9999;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.7);
+            width: auto;
+            padding: 0 20px;
+            border-radius: 35px;
+        }
+        
+        .whatsapp-float svg {
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover svg {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-text {
+            display: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 5px;
+            white-space: nowrap;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .whatsapp-float:hover .whatsapp-text {
+            display: block;
+        }
+        
+        .whatsapp-float:hover {
+            flex-direction: row;
+            gap: 10px;
+        }
+        
+        .whatsapp-float:hover .whatsapp-text {
+            margin-top: 0;
+        }
+        
+        @keyframes pulse-whatsapp {
+            0%, 100% {
+                box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+            }
+            50% {
+                box-shadow: 0 6px 35px rgba(37, 211, 102, 0.8);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .whatsapp-float svg {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .whatsapp-float:hover {
+                width: 55px;
+                height: 55px;
+                padding: 0;
+            }
+            
+            .whatsapp-text {
+                display: none !important;
+            }
+        }
+    </style>
 
     <!-- Carrito Modal -->
     <div class="modal fade" id="carritoModal" tabindex="-1">
@@ -382,19 +489,19 @@
             { id: 21, nombre: 'HIGIENICO RENDIPEL PRO UH 6X300 MTS', categoria: 'papeleria', precio: 47990, marca: 'Rendipel', img: 'img/HIGIENICO RENDIPEL PRO UH 6X300 MTS.png' },
             { id: 22, nombre: 'HIGIENICO TORK ROLLO D/H 8X6 25 MTS', categoria: 'papeleria', precio: 28990, marca: 'Tork', img: 'img/HIGIENICO TORK ROLLO DH 8X6 25 MTS.png' },
             { id: 23, nombre: 'TOALLA RENDIPEL MAX UH 2X250 MTS', categoria: 'papeleria', precio: 26990, marca: 'Rendipel', img: 'img/TOALLA RENDIPEL MAX UH 2X250 MTS.png' },
-            { id: 24, nombre: 'TOALLA INTERFOLIADA NATURAL 18X250', categoria: 'papeleria', precio: 36990, marca: 'Elite', img: null },
+            { id: 24, nombre: 'TOALLA INTERFOLIADA NATURAL 18X250', categoria: 'papeleria', precio: 36990, marca: 'Elite', img: 'img/TOALLA INTERFOLIADA NATURAL 18X250.png' },
             { id: 25, nombre: 'SERVILLETA MESA FLORES 33X33 9X500 ELITE', categoria: 'papeleria', precio: 22990, marca: 'Elite', img: 'img/SERVILLETA MESA FLORES 33X33 9X500 ELITE.png' },
             { id: 26, nombre: 'PAÑUELO FACIAL INSTITUCIONAL 42 CJ X 50 UN ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: 'img/PAÑUELO FACIAL INSTITUCIONAL 42 CJ X 50 UN ELITE.png' },
-            { id: 27, nombre: 'FACIAL TORK DH EXTRA SUAVE 75 UNIDADES', categoria: 'papeleria', precio: 8990, marca: 'Tork', img: null },
+            { id: 27, nombre: 'FACIAL TORK DH EXTRA SUAVE 75 UNIDADES', categoria: 'papeleria', precio: 8990, marca: 'Tork', img: 'img/FACIAL TORK DH EXTRA SUAVE 75 UNIDADES.png' },
             { id: 28, nombre: 'PAÑO MAXWIPE MAX50 TRABAJO LIVIANO BOBINA 690 PAÑOS', categoria: 'papeleria', precio: 18990, marca: 'Maxwipe', img: 'img/PAÑO MAXWIPE MAX50 TRABAJO LIVIANO BOBINA 690 PAÑOS.png' },
             { id: 29, nombre: 'PAÑO MAXWIPE MAX60 TRABAJO BOBINA 890 PAÑOS', categoria: 'papeleria', precio: 22990, marca: 'Maxwipe', img: 'img/PAÑO MAXWIPE MAX60 TRABAJO BOBINA 890 PAÑOS.png' },
             { id: 30, nombre: 'SABANILLA BIANCA 2PQ X 50MTS', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: 'img/SABANILLA BIANCA 2PQ X 50MTS.png' },
             
             // DISPENSADORES
-            { id: 31, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO INOXIDABLE ELITE', categoria: 'papeleria', precio: 35990, marca: 'Elite', img: null },
-            { id: 32, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO METALICO BLANCO ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: null },
-            { id: 33, nombre: 'DISP. EVOLUTION HIGIENICO DOBLE ROLLO BLANCO', categoria: 'papeleria', precio: 28990, marca: 'Evolution', img: null },
-            { id: 34, nombre: 'DISP. EVOLUTION HIGIENICO INTERFOLIADO BLANCO', categoria: 'papeleria', precio: 29990, marca: 'Evolution', img: null },
+            { id: 31, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO INOXIDABLE ELITE', categoria: 'papeleria', precio: 35990, marca: 'Elite', img: 'img/DISP. DE PAPEL HIGIENICO JUMBO INOXIDABLE ELITE.png' },
+            { id: 32, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO METALICO BLANCO ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: 'img/DISP. DE PAPEL HIGIENICO JUMBO METALICO BLANCO ELITE.png' },
+            { id: 33, nombre: 'DISP. EVOLUTION HIGIENICO DOBLE ROLLO BLANCO', categoria: 'papeleria', precio: 28990, marca: 'Evolution', img: 'img/DISP. EVOLUTION HIGIENICO DOBLE ROLLO BLANCO.png' },
+            { id: 34, nombre: 'DISP. EVOLUTION HIGIENICO INTERFOLIADO BLANCO', categoria: 'papeleria', precio: 29990, marca: 'Evolution', img: 'img/DISP. EVOLUTION HIGIENICO INTERFOLIADO BLANCO.png' },
             { id: 35, nombre: 'DISP. TORK XPRESS MINI ACERO INOXIDABLE', categoria: 'papeleria', precio: 45990, marca: 'Tork', img: null },
             
             // ===== ARTÍCULOS DE ASEO =====
