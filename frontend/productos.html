@@ -188,11 +188,43 @@
                     </div>
 
                     <div style="display: flex; gap: 15px; align-items: center;">
-                        <a href="#" id="userLoginBtn" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-primary" style="display: flex; align-items: center; gap: 5px;">
-                            👤 <span id="userNameDisplay">Iniciar Sesión</span>
-                        </a>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn btn-primary" style="display: flex; align-items: center; gap: 5px;" title="Mi Carrito">
-                            🛒 <span id="carrito-count" style="background: white; color: var(--color-primary); border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">0</span>
+                        <!-- Botón de Usuario / Login -->
+                        <div class="dropdown">
+                            <a href="#" id="userLoginBtn" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-primary" style="display: flex; align-items: center; gap: 8px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
+                                <span id="userNameDisplay">Iniciar Sesión</span>
+                            </a>
+                            <!-- Dropdown Menu (Bootstrap lo muestra/oculta automáticamente) -->
+                            <ul class="dropdown-menu dropdown-menu-end" id="userDropdownMenu">
+                                <li>
+                                    <a class="dropdown-item" href="perfil.html" style="display: flex; align-items: center; gap: 8px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                        </svg>
+                                        Mis Datos
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="#" onclick="cerrarSesionDropdown(event)" style="display: flex; align-items: center; gap: 8px; color: #dc3545;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                        </svg>
+                                        Cerrar Sesión
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Botón de Carrito -->
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn btn-primary" style="display: flex; align-items: center; gap: 8px;" title="Mi Carrito">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                            <span id="carrito-count" style="background: white; color: var(--color-primary); border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">0</span>
                         </a>
                     </div>
 
@@ -459,49 +491,49 @@
         // TODOS LOS PRODUCTOS DEL CATÁLOGO ECOFOR MARKET PDF
         const todosLosProductos = [
             // ===== PAPELERÍA Y DISPENSADORES =====
-            { id: 1, nombre: 'HIGIENICO TORK UNIVERSAL JUMBO H/S 4X500 MTS', categoria: 'papeleria', precio: 45990, marca: 'Tork', img: 'img/HIGIENICO TORK UNIVERSAL JUMBO HS 4X500 MTS.png' },
-            { id: 2, nombre: 'HIGIENICO RENDIPEL MAX UH 4X500 MTS', categoria: 'papeleria', precio: 42990, marca: 'Rendipel', img: 'img/HIGIENICO RENDIPEL MAX UH 4X500 MTS.png' },
-            { id: 3, nombre: 'HIGIENICO TORK UNIVERSAL 6X500 MTS', categoria: 'papeleria', precio: 62990, marca: 'Tork', img: 'img/HIGIENICO TORK UNIVERSAL 6X500 MTS.png' },
-            { id: 4, nombre: 'HIGIENICO BLANCA JUMBO 4X500 MTS', categoria: 'papeleria', precio: 38990, marca: 'Bianca', img: 'img/HIGIENICO BLANCA JUMBO 4X500 MTS.png' },
-            { id: 5, nombre: 'HIGIENICO ELITE D.H 6X250 MTS', categoria: 'papeleria', precio: 35990, marca: 'Elite', img: 'img/HIGIENICO ELITE D.H 6X250 MTS.png' },
-            { id: 6, nombre: 'HIGIENICO TORK SMARTONE MINI 12 ROLLOS X 111.6 MTS', categoria: 'papeleria', precio: 48990, marca: 'Tork', img: 'img/HIGIENICO TORK SMARTONE MINI 12 ROLLOS X 111.6 MTS.png' },
+            { id: 1, nombre: 'HIGIENICO TORK UNIVERSAL JUMBO H/S 4X500 MTS', categoria: 'papeleria', precio: 45990, marca: 'Tork', img: null },
+            { id: 2, nombre: 'HIGIENICO RENDIPEL MAX UH 4X500 MTS', categoria: 'papeleria', precio: 42990, marca: 'Rendipel', img: null },
+            { id: 3, nombre: 'HIGIENICO TORK UNIVERSAL 6X500 MTS', categoria: 'papeleria', precio: 62990, marca: 'Tork', img: null },
+            { id: 4, nombre: 'HIGIENICO BLANCA JUMBO 4X500 MTS', categoria: 'papeleria', precio: 38990, marca: 'Bianca', img: null },
+            { id: 5, nombre: 'HIGIENICO ELITE D.H 6X250 MTS', categoria: 'papeleria', precio: 35990, marca: 'Elite', img: null },
+            { id: 6, nombre: 'HIGIENICO TORK SMARTONE MINI 12 ROLLOS X 111.6 MTS', categoria: 'papeleria', precio: 48990, marca: 'Tork', img: null },
             
-            { id: 7, nombre: 'TOALLA BIANCA JUMBO 2X250 MTS', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: 'img/TOALLA BIANCA JUMBO 2X250 MTS.png' },
-            { id: 8, nombre: 'TOALLA ELITE ECONOMICA 2X250 MTS', categoria: 'papeleria', precio: 22990, marca: 'Elite', img: 'img/TOALLA ELITE ECONOMICA 2X250 MTS.png' },
-            { id: 9, nombre: 'TOALLA TORK UNIVERSAL 2X250 MTS JUMBO', categoria: 'papeleria', precio: 29990, marca: 'Tork', img: 'img/TOALLA TORK UNIVERSAL 2X250 MTS JUMBO.png' },
-            { id: 10, nombre: 'TOALLA ELITE AUTOCORTE 2X250 MTS', categoria: 'papeleria', precio: 28990, marca: 'Elite', img: 'img/TOALLA ELITE AUTOCORTE 2X250 MTS.jpg' },
-            { id: 11, nombre: 'TOALLA TORK ADVANCED D/H 2X200MT JUMBO', categoria: 'papeleria', precio: 34990, marca: 'Tork', img: 'img/TOALLA TORK ADVANCED DH 2X200MT JUMBO.png' },
-            { id: 12, nombre: 'TOALLA INTERFOLIADA DH 18X200 ELITE', categoria: 'papeleria', precio: 38990, marca: 'Elite', img: 'img/TOALLA INTERFOLIADA DH 18X200 ELITE.png' },
+            { id: 7, nombre: 'TOALLA BIANCA JUMBO 2X250 MTS', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: null },
+            { id: 8, nombre: 'TOALLA ELITE ECONOMICA 2X250 MTS', categoria: 'papeleria', precio: 22990, marca: 'Elite', img: null },
+            { id: 9, nombre: 'TOALLA TORK UNIVERSAL 2X250 MTS JUMBO', categoria: 'papeleria', precio: 29990, marca: 'Tork', img: null },
+            { id: 10, nombre: 'TOALLA ELITE AUTOCORTE 2X250 MTS', categoria: 'papeleria', precio: 28990, marca: 'Elite', img: null },
+            { id: 11, nombre: 'TOALLA TORK ADVANCED D/H 2X200MT JUMBO', categoria: 'papeleria', precio: 34990, marca: 'Tork', img: null },
+            { id: 12, nombre: 'TOALLA INTERFOLIADA DH 18X200 ELITE', categoria: 'papeleria', precio: 38990, marca: 'Elite', img: null },
             
-            { id: 13, nombre: 'SERVILLETA BIANCA COCKTAIL 20X100 HJ', categoria: 'papeleria', precio: 12990, marca: 'Bianca', img: 'img/SERVILLETA BIANCA COCKTAIL 20X100 HJ.png' },
-            { id: 14, nombre: 'SERVILLETA ELITE EXPRESS DH COCTEL 18 PQT X 400UN', categoria: 'papeleria', precio: 18990, marca: 'Elite', img: 'img/SERVILLETA ELITE EXPRESS DH COCTEL 18 PQT X 400UN.png' },
-            { id: 15, nombre: 'SERVILLETA BIANCA LUNCH 20X500', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: 'img/SERVILLETA BIANCA LUNCH 20X500.png' },
-            { id: 16, nombre: 'TORK ADVANCED SERVILLETA MESA 30X30 ACOLCHADA 12X200', categoria: 'papeleria', precio: 26990, marca: 'Tork', img: 'img/TORK ADVANCED SERVILLETA MESA 30X30 ACOLCHADA 12X200.png' },
+            { id: 13, nombre: 'SERVILLETA BIANCA COCKTAIL 20X100 HJ', categoria: 'papeleria', precio: 12990, marca: 'Bianca', img: null },
+            { id: 14, nombre: 'SERVILLETA ELITE EXPRESS DH COCTEL 18 PQT X 400UN', categoria: 'papeleria', precio: 18990, marca: 'Elite', img: null },
+            { id: 15, nombre: 'SERVILLETA BIANCA LUNCH 20X500', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: null },
+            { id: 16, nombre: 'TORK ADVANCED SERVILLETA MESA 30X30 ACOLCHADA 12X200', categoria: 'papeleria', precio: 26990, marca: 'Tork', img: null },
             
-            { id: 17, nombre: 'PAÑUELO FACIAL ELITE PREMIUM 60/36', categoria: 'papeleria', precio: 38990, marca: 'Elite', img: 'img/PAÑUELO FACIAL ELITE PREMIUM 6036.png' },
+            { id: 17, nombre: 'PAÑUELO FACIAL ELITE PREMIUM 60/36', categoria: 'papeleria', precio: 38990, marca: 'Elite', img: null },
             
-            { id: 18, nombre: 'PAÑO MAXWIPE MAX70 TRABAJO PESADO ROLLO 88 PAÑOS X 6 UN', categoria: 'papeleria', precio: 28990, marca: 'Maxwipe', img: 'img/PAÑO MAXWIPE MAX70 TRABAJO PESADO ROLLO 88 PAÑOS X 6 UN.png' },
+            { id: 18, nombre: 'PAÑO MAXWIPE MAX70 TRABAJO PESADO ROLLO 88 PAÑOS X 6 UN', categoria: 'papeleria', precio: 28990, marca: 'Maxwipe', img: null },
             
-            { id: 19, nombre: 'SABANILLA TORK PREPICADA ADVANCED 4PAQ X 2ROLLO 48MTS', categoria: 'papeleria', precio: 42990, marca: 'Tork', img: 'img/SABANILLA TORK PREPICADA ADVANCED 4PAQ X 2ROLLO 48MTS.png' },
+            { id: 19, nombre: 'SABANILLA TORK PREPICADA ADVANCED 4PAQ X 2ROLLO 48MTS', categoria: 'papeleria', precio: 42990, marca: 'Tork', img: null },
             
-            // Más productos con imágenes reales
-            { id: 20, nombre: 'HIGIENICO BIANCA JUMBO 6X500 MTS', categoria: 'papeleria', precio: 56990, marca: 'Bianca', img: 'img/HIGIENICO BIANCA JUMBO 6X500 MTS.png' },
-            { id: 21, nombre: 'HIGIENICO RENDIPEL PRO UH 6X300 MTS', categoria: 'papeleria', precio: 47990, marca: 'Rendipel', img: 'img/HIGIENICO RENDIPEL PRO UH 6X300 MTS.png' },
-            { id: 22, nombre: 'HIGIENICO TORK ROLLO D/H 8X6 25 MTS', categoria: 'papeleria', precio: 28990, marca: 'Tork', img: 'img/HIGIENICO TORK ROLLO DH 8X6 25 MTS.png' },
-            { id: 23, nombre: 'TOALLA RENDIPEL MAX UH 2X250 MTS', categoria: 'papeleria', precio: 26990, marca: 'Rendipel', img: 'img/TOALLA RENDIPEL MAX UH 2X250 MTS.png' },
-            { id: 24, nombre: 'TOALLA INTERFOLIADA NATURAL 18X250', categoria: 'papeleria', precio: 36990, marca: 'Elite', img: 'img/TOALLA INTERFOLIADA NATURAL 18X250.png' },
-            { id: 25, nombre: 'SERVILLETA MESA FLORES 33X33 9X500 ELITE', categoria: 'papeleria', precio: 22990, marca: 'Elite', img: 'img/SERVILLETA MESA FLORES 33X33 9X500 ELITE.png' },
-            { id: 26, nombre: 'PAÑUELO FACIAL INSTITUCIONAL 42 CJ X 50 UN ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: 'img/PAÑUELO FACIAL INSTITUCIONAL 42 CJ X 50 UN ELITE.png' },
-            { id: 27, nombre: 'FACIAL TORK DH EXTRA SUAVE 75 UNIDADES', categoria: 'papeleria', precio: 8990, marca: 'Tork', img: 'img/FACIAL TORK DH EXTRA SUAVE 75 UNIDADES.png' },
-            { id: 28, nombre: 'PAÑO MAXWIPE MAX50 TRABAJO LIVIANO BOBINA 690 PAÑOS', categoria: 'papeleria', precio: 18990, marca: 'Maxwipe', img: 'img/PAÑO MAXWIPE MAX50 TRABAJO LIVIANO BOBINA 690 PAÑOS.png' },
-            { id: 29, nombre: 'PAÑO MAXWIPE MAX60 TRABAJO BOBINA 890 PAÑOS', categoria: 'papeleria', precio: 22990, marca: 'Maxwipe', img: 'img/PAÑO MAXWIPE MAX60 TRABAJO BOBINA 890 PAÑOS.png' },
-            { id: 30, nombre: 'SABANILLA BIANCA 2PQ X 50MTS', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: 'img/SABANILLA BIANCA 2PQ X 50MTS.png' },
+            // Más productos
+            { id: 20, nombre: 'HIGIENICO BIANCA JUMBO 6X500 MTS', categoria: 'papeleria', precio: 56990, marca: 'Bianca', img: null },
+            { id: 21, nombre: 'HIGIENICO RENDIPEL PRO UH 6X300 MTS', categoria: 'papeleria', precio: 47990, marca: 'Rendipel', img: null },
+            { id: 22, nombre: 'HIGIENICO TORK ROLLO D/H 8X6 25 MTS', categoria: 'papeleria', precio: 28990, marca: 'Tork', img: null },
+            { id: 23, nombre: 'TOALLA RENDIPEL MAX UH 2X250 MTS', categoria: 'papeleria', precio: 26990, marca: 'Rendipel', img: null },
+            { id: 24, nombre: 'TOALLA INTERFOLIADA NATURAL 18X250', categoria: 'papeleria', precio: 36990, marca: 'Elite', img: null },
+            { id: 25, nombre: 'SERVILLETA MESA FLORES 33X33 9X500 ELITE', categoria: 'papeleria', precio: 22990, marca: 'Elite', img: null },
+            { id: 26, nombre: 'PAÑUELO FACIAL INSTITUCIONAL 42 CJ X 50 UN ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: null },
+            { id: 27, nombre: 'FACIAL TORK DH EXTRA SUAVE 75 UNIDADES', categoria: 'papeleria', precio: 8990, marca: 'Tork', img: null },
+            { id: 28, nombre: 'PAÑO MAXWIPE MAX50 TRABAJO LIVIANO BOBINA 690 PAÑOS', categoria: 'papeleria', precio: 18990, marca: 'Maxwipe', img: null },
+            { id: 29, nombre: 'PAÑO MAXWIPE MAX60 TRABAJO BOBINA 890 PAÑOS', categoria: 'papeleria', precio: 22990, marca: 'Maxwipe', img: null },
+            { id: 30, nombre: 'SABANILLA BIANCA 2PQ X 50MTS', categoria: 'papeleria', precio: 24990, marca: 'Bianca', img: null },
             
             // DISPENSADORES
-            { id: 31, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO INOXIDABLE ELITE', categoria: 'papeleria', precio: 35990, marca: 'Elite', img: 'img/DISP. DE PAPEL HIGIENICO JUMBO INOXIDABLE ELITE.png' },
-            { id: 32, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO METALICO BLANCO ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: 'img/DISP. DE PAPEL HIGIENICO JUMBO METALICO BLANCO ELITE.png' },
-            { id: 33, nombre: 'DISP. EVOLUTION HIGIENICO DOBLE ROLLO BLANCO', categoria: 'papeleria', precio: 28990, marca: 'Evolution', img: 'img/DISP. EVOLUTION HIGIENICO DOBLE ROLLO BLANCO.png' },
-            { id: 34, nombre: 'DISP. EVOLUTION HIGIENICO INTERFOLIADO BLANCO', categoria: 'papeleria', precio: 29990, marca: 'Evolution', img: 'img/DISP. EVOLUTION HIGIENICO INTERFOLIADO BLANCO.png' },
+            { id: 31, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO INOXIDABLE ELITE', categoria: 'papeleria', precio: 35990, marca: 'Elite', img: null },
+            { id: 32, nombre: 'DISP. DE PAPEL HIGIENICO JUMBO METALICO BLANCO ELITE', categoria: 'papeleria', precio: 32990, marca: 'Elite', img: null },
+            { id: 33, nombre: 'DISP. EVOLUTION HIGIENICO DOBLE ROLLO BLANCO', categoria: 'papeleria', precio: 28990, marca: 'Evolution', img: null },
+            { id: 34, nombre: 'DISP. EVOLUTION HIGIENICO INTERFOLIADO BLANCO', categoria: 'papeleria', precio: 29990, marca: 'Evolution', img: null },
             { id: 35, nombre: 'DISP. TORK XPRESS MINI ACERO INOXIDABLE', categoria: 'papeleria', precio: 45990, marca: 'Tork', img: null },
             
             // ===== ARTÍCULOS DE ASEO =====
@@ -571,6 +603,44 @@
         let productosFiltrados = [...todosLosProductos];
         let categoriaActual = 'todos';
         
+        // Función para generar placeholder según categoría
+        function getPlaceholderImage(categoria, marca) {
+            const colores = {
+                papeleria: '#2196F3',
+                aseo: '#4CAF50',
+                quimicos: '#FF9800',
+                epp: '#9C27B0'
+            };
+            
+            const iconos = {
+                papeleria: `<path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h18v2H3v-2zm0 4h12v2H3v-2z" fill="white"/>`,
+                aseo: `<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-6 16H7v-6h6v6zm0-8H7V5h6v6zm6 8h-6v-6h6v6zm0-8h-6V5h6v6z" fill="white"/>`,
+                quimicos: `<path d="M7 2v2h1v14c0 2.76 2.24 5 5 5s5-2.24 5-5V4h1V2H7zm5 18c-1.66 0-3-1.34-3-3 0-1.66 1.34-3 3-3s3 1.34 3 3c0 1.66-1.34 3-3 3z" fill="white"/>`,
+                epp: `<path d="M11.5 2C11.5 2 8.66 3.63 7 6h-.5C5.12 6 4 7.12 4 8.5V10h1.5V8.5c0-.55.45-1 1-1H7c1.13 1.77 3.15 3 5.5 3 3.59 0 6.5-2.91 6.5-6.5V2h-7.5z" fill="white"/>`
+            };
+            
+            const color = colores[categoria] || '#0066cc';
+            const icono = iconos[categoria] || iconos.papeleria;
+            
+            return `data:image/svg+xml,${encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" width="280" height="200" viewBox="0 0 280 200">
+                    <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:${color};stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:${color};stop-opacity:0.7" />
+                        </linearGradient>
+                    </defs>
+                    <rect fill="url(#grad)" width="280" height="200"/>
+                    <g transform="translate(140, 70)">
+                        <svg viewBox="0 0 24 24" width="60" height="60" x="-30" y="-30">
+                            ${icono}
+                        </svg>
+                    </g>
+                    <text x="140" y="150" fill="white" font-size="18" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">${marca}</text>
+                </svg>
+            `)}`;
+        }
+        
         function renderizarProductos() {
             const grid = document.getElementById('productosGrid');
             const total = document.getElementById('totalProductos');
@@ -588,12 +658,12 @@
             }
             
             grid.innerHTML = productosFiltrados.map(p => {
-                const imagenSrc = p.img || `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="280" height="200"><rect fill="%230066cc" width="280" height="200"/><text x="140" y="100" fill="white" font-size="20" text-anchor="middle" font-family="Arial">${encodeURIComponent(p.marca)}</text></svg>`;
+                const imagenSrc = p.img || getPlaceholderImage(p.categoria, p.marca);
                 
                 return `
                     <div class="producto-card">
                         <div class="producto-image">
-                            <img src="${imagenSrc}" alt="${p.nombre}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22200%22><rect fill=%22%230066cc%22 width=%22280%22 height=%22200%22/><text x=%22140%22 y=%22100%22 fill=%22white%22 font-size=%2220%22 text-anchor=%22middle%22>${p.marca}</text></svg>'">
+                            <img src="${imagenSrc}" alt="${p.nombre}">
                         </div>
                         <div class="producto-info">
                             <span class="producto-marca">${p.marca}</span>

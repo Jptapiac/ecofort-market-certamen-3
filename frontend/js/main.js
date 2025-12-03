@@ -767,23 +767,28 @@ async function crearCuenta() {
 function actualizarUILogueado() {
     const userNameDisplay = document.getElementById('userNameDisplay');
     const userLoginBtn = document.getElementById('userLoginBtn');
+    const userDropdownMenu = document.getElementById('userDropdownMenu');
     
     if (usuarioActual && tokenActual) {
-        // Usuario logueado - mostrar nombre y opción de cerrar sesión
+        // Usuario logueado - mostrar dropdown menu
         if (userNameDisplay) {
-            userNameDisplay.innerHTML = usuarioActual.username;
+            userNameDisplay.innerHTML = usuarioActual.username || 'Usuario';
         }
         if (userLoginBtn) {
+            // Cambiar a dropdown
             userLoginBtn.removeAttribute('data-bs-toggle');
             userLoginBtn.removeAttribute('data-bs-target');
-            userLoginBtn.onclick = function(e) {
-                e.preventDefault();
-                cerrarSesion();
-            };
-            userLoginBtn.title = 'Clic para cerrar sesión';
+            userLoginBtn.setAttribute('data-bs-toggle', 'dropdown');
+            userLoginBtn.setAttribute('aria-expanded', 'false');
+            userLoginBtn.onclick = null;
+            userLoginBtn.title = 'Mi cuenta';
             userLoginBtn.classList.remove('btn-outline-primary');
-            userLoginBtn.classList.remove('btn-success');
-            userLoginBtn.classList.add('btn-user-logged');
+            userLoginBtn.classList.add('btn-success');
+            userLoginBtn.style.cursor = 'pointer';
+        }
+        // Remover display:none del menú para que Bootstrap pueda manejarlo
+        if (userDropdownMenu) {
+            userDropdownMenu.style.removeProperty('display');
         }
     } else {
         // Usuario no logueado
@@ -791,15 +796,53 @@ function actualizarUILogueado() {
             userNameDisplay.innerHTML = 'Iniciar Sesión';
         }
         if (userLoginBtn) {
+            userLoginBtn.removeAttribute('data-bs-toggle');
+            userLoginBtn.removeAttribute('aria-expanded');
             userLoginBtn.setAttribute('data-bs-toggle', 'modal');
             userLoginBtn.setAttribute('data-bs-target', '#loginModal');
             userLoginBtn.onclick = null;
             userLoginBtn.title = 'Iniciar Sesión';
             userLoginBtn.classList.remove('btn-success');
-            userLoginBtn.classList.remove('btn-user-logged');
             userLoginBtn.classList.add('btn-outline-primary');
         }
+        // Bootstrap maneja automáticamente la visibilidad del dropdown
+        if (userDropdownMenu) {
+            userDropdownMenu.style.removeProperty('display');
+        }
     }
+}
+
+// Función para cerrar sesión desde el dropdown
+async function cerrarSesionDropdown(event) {
+    if (event) event.preventDefault();
+    
+    // Confirmar
+    if (!confirm('¿Estás seguro que deseas cerrar sesión?')) {
+        return;
+    }
+    
+    try {
+        if (tokenActual) {
+            await fetch(`${API_BASE_URL}/autenticacion/logout/`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${tokenActual}`,
+                    'Content-Type': 'application/json',
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Error al cerrar sesión:', error);
+    }
+    
+    // Limpiar datos
+    localStorage.removeItem('ecofort_token');
+    localStorage.removeItem('ecofort_usuario');
+    tokenActual = null;
+    usuarioActual = null;
+    
+    // Redirigir a inicio INMEDIATAMENTE (sin esperar)
+    window.location.replace('index.html');
 }
 
 function verPerfil() {
